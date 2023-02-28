@@ -36,7 +36,7 @@ steps:
           PROJECT=$$(gcloud config get-value core/project)
           _REGION=${_CLOUDSDK_COMPUTE_REGION}
           gcloud container clusters get-credentials "$${_CLUSTER}" \
-            --project "$${PROJECT}" \
+            --project "$${_PROJECT_ID}" \
             --region "$${_REGION}"  
           sed -i 's|corelab/gceme:.*|corelab/gceme:$TAG_NAME|' /home/songtest_16/container-builder-workshop/*.yaml
           

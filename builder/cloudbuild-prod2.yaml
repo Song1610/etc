@@ -44,7 +44,7 @@ steps:
   - id: 'deploy'
     name: 'gcr.io/cloud-builders/gcloud'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_ZONE}'
+      - 'CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_REGION}'
       - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}'
       - 'KUBECONFIG=/kube/config'
     entrypoint: 'bash'
@@ -53,11 +53,11 @@ steps:
       - |
           CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}
           PROJECT=$$(gcloud config get-value core/project)
-          ZONE=${_CLOUDSDK_COMPUTE_ZONE}
+          REGION=${_CLOUDSDK_COMPUTE_REGION}
 
           gcloud container clusters get-credentials "$${CLUSTER}" \
             --project "$${PROJECT}" \
-            --zone "$${ZONE}"  
+            --region "$${REGION}"  
 
 
 
